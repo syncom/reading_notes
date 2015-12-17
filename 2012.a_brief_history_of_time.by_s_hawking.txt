@@ -1,0 +1,529 @@
+##############################################
+# Chapter 1: Our Picture of the Universe
+############################################## 
+
+Ptolemy's cosmological model had to make an assumption that the moon
+followed a path that sometimes brought it twice as close to the earth as
+at other times. 
+
+Ptolemy's classic book "Almagest" is a worthy reading.
+http://www.amazon.com/Ptolemys-Almagest-Ptolemy/dp/0691002606
+
+"A good theory is characterized by the fact that it makes a number of
+predictions that could in principle be disproved or falsified by
+observation." -- Karl Popper
+
+"In practice, what often happens is that a new theory is devised that is
+really an extension of the previous theory." An example: very accurate
+observations of planet Mercury revealed a difference between its motion
+and the predictions of Newton's theory of gravity, but is predicted by
+Einstein's general theory of relativity. 
+
+"The eventual goal of science is to provide a single theory that
+describes the whole universe."
+
+Today the universe is described in two basic partial theories: the
+general theory of relativity and quantum mechanics. These two theories
+are inconsistent with each other, i.e., they cannot both be correct.
+
+The ideas about unified scientific theories assume we are rational
+beings who are free to observe the universe as we want and to draw
+logical deductions from what we see.
+
+############################################## 
+# Chapter 2: Space and Time
+############################################## 
+
+Newton's laws of motion: 牛顿运动定律 The fundamental postulate of the
+theory of relativity was that the laws of science should be the same for
+all freely moving observers, no matter what their speed.
+ 
+Radar uses round-trip time of the pulse to measure distance. This method
+to measure distance is more precise, because we can measure time more
+accurately than length.
+ 
+Maxwell's equation predicted that the speed of light should be the same
+whatever the speed of the source.
+ 
+"Only events in the future (light cone) of (event) P can be affected by
+what happens at P because nothing can travel faster than light."
+ 
+The special relativity was developed by Einstein and Poincare in 1905
+independently. It neglects gravitational effects. It was very successful
+in explaining that the speed of light appears the same to all observers
+and in describing what happens when things move at speeds close to the
+speed of light. However, it was inconsistent with the Newtonian theory
+of gravity.
+ 
+Einstein suggested that gravity is not a force like other forces, but is
+a consequence of the fact that space-time is not flat; it is
+curved/warped (扭曲) by the distribution of mass and energy in it.
+ 
+According to the general theory of relativity (GTR), bodies like the
+earth are not made to move on curved orbits by a force called gravity;
+instead, they follow the nearest thing to a straight path in a curved
+space, which is called a geodesic (测地线).
+ 
+"In general relativity, bodies always follow straight lines in
+four-dimensional space-time, but the nevertheless appear to us to move
+along curved paths in our three-dimensional space."
+ 
+"Light rays too must follow geodesics in space-time."
+ 
+Some (observation-confirmed) predictions of GTR:
+- Light should be bent by gravitational fields.
+- Time should appear to slower near a massive body like the earth. This
+  fact has important implications in accuracy of the GPS system. See
+http://www.astronomy.ohio-state.edu/~pogge/Ast162/Unit5/gps.html for a
+more detailed explanation.
+ 
+"Newton's laws of motion put an end to the idea of absolute position in
+space. The theory of relativity gets rid of absolute time."
+
+############################################## 
+# Chapter 3: The Expanding Universe
+##############################################
+
+"Our modern picture of the universe dates back to only 1924, when the
+American astronomer Edwin Hubble demonstrated that ours was not the only
+galaxy."
+ 
+The apparent brightness of a star depends on two factors: its luminosity
+and its distance from us. Knowing the apparent brightness and either of
+the two, the other factor can be worked out. The distance to another
+galaxy can be computed based on this relationship and the assumption (of
+Hubble's) that certain types of stars have the same luminosity (whose
+value we already know).
+ 
+Our sun is an ordinary, average-sized, yellow star, near the inner edge
+of one of the spiral arms of the Milky Way galaxy, which is about one
+hundred thousand light-years across.
+ 
+We can tell the temperature of a star from the spectrum of its light.
+ 
+Certain chemical element absorbs a characteristic set of very specific
+colors. By matching these to those that are missing from a star's
+spectrum, we can determine exactly which elements are present in the
+star's atmosphere.
+ 
+The Doppler effect says that when a source of light is moving towards us
+then the wavelenght of the waves we receive is shorter than when the
+source was stationary; and vice versa.
+ 
+The fact that most galaxies are red-shifted implies that the universe is
+expanding.
+ 
+Friedmann's two simple assumptions about the universe:
+- The universe looks identical in whichever direction we look.
+- This would also be true if we were observing the universe from
+  anywhere else.
+ 
+There are three different kinds of models that obey Friedmann's two
+fundamental assumptions.  
+a) In the first kind (which Friedmann found) the universe is expanding
+sufficiently slowly that the gravitational attraction between the
+different galaxies causes the expansion to slow down and eventually
+stop. The universe is not infinite in space in this model.  
+
+b) In the second kind of model, space is bent like the surface of a
+saddle, and therefore is infinite.  
+
+c) In the third kind of model, with just the critical rate of expansion,
+space is flat, and thus is also infinite.
+ 
+To know which Friedmann model describes the universe, we need to know
+the present rate of expansion of the universe and its present average
+density. It is known that the universe is expanding by between 5 percent
+and 10 percent every thousand million years. However, our uncertainty
+about the present average density of the universe is greater. When we
+add up the masses of all the stars we can see in all galaxies and all
+the "dark matter", we get only one tenth of the amount required to halt
+the expansion of the universe.
+ 
+All Friedmann solutions imply the big bang.
+ 
+"As far as we are concerned, events before the big bang can have no
+consequences, so they should not form part of a scientific model of the
+universe. We should therefore cut them out of the model and say that
+time had a beginning at the big bang."
+ 
+The work of Lifshitz and Khalatnikov showed that the universe COULD have
+a big bang, if the GTR was correct. But it did not resolve the question
+whether the GTR predicts that the universe SHOULD have a big bang.
+ 
+Hawking and Penrose jointly proved in 1970 that there must have been a
+big bang singularity provided only the GTR is correct and the universe
+contains as much matter as we observe. However, Hawking changed his mind
+later and believed that there was no singularity at the beginning of the
+universe once quantum effects are taken into account.
+
+############################################## 
+# Chapter 4: The Uncertainty Principle
+############################################## 
+
+Max Planck suggested in 1900 that light, X rays, and other waves cannot
+be emitted at an arbitrary rate, but only in certain packets called
+"quanta", and each quantum had a certain amount of energy that was
+greater the higher the frequency of the waves. This solved the obvious
+false result that the total energy radiated from a hot object is
+infinite.
+
+"The more accurate you try to measure the position of the particle, the
+less accurate you can measure its speed."
+
+Heisenberg showed that the uncertainty in the position of the particle
+times the uncertainty in its velocity times the mass of the particle can
+never be smaller than a certain quantity, which is known as Planck's
+constant (6.626068 × 10^(-34) m^2 kg / s).
+
+Quantum mechanics does not predict a single definite result for an
+observation. Instead, it predicts a number of different possible
+outcomes and their likelihood.
+
+The only areas of physical science into which quantum mechanics has not
+yet been properly incorporated are gravity and the large-scale structure
+of the universe.
+
+The two-slit experiment showed that interference can also occur for
+particles, as the duality introduced by quantum mechanics.
+
+Bohr's model that there are limited set of allowed orbits of electrons
+explained well the structure of the simplest atom, hydrogen, which has
+only one electron orbiting around the nucleus. But it was unclear how it
+can be extended to more complicated atoms. Quantum mechanics resolved
+this difficulty by modeling an electron orbiting around the nucleus as a
+wave.
+
+In principle, quantum mechanics allows us to predict nearly everything
+we see around us. In practice, the calculation required for system
+containing more than a few electrons are so complicated that we cannot
+do them.
+
+Einstein's GTR is called a "classical theory", i.e., it does not take
+account of the uncertainty principle of quantum mechanics. It does not
+lead to any discrepancy with observation is that all the gravitational
+fields that we normally experience are very weak. However, the
+singularity theorems indicate that gravitational fields should get very
+strong in at least two situations: black holes, and the big bang, in
+which cases quantum mechanics should be important.
+
+Classical GTR, by predicting points of infinite density, predicts its
+own downfall, just as classical (nonquantum) mechanics predicted its
+downfall by suggesting that atoms should collapse to infinite density.
+
+We do not yet have a consistent theory that unifies general relativity
+and quantum mechanics. But we know a number of features it should have.
+
+* Chapter 5: Elementary Particles and the Forces of Nature
+
+Six flavors of quarks are know: up, down, strange, charmed, bottom and
+up. The first three had been known since 1960s. The charmed quark was
+discovered in 1974, the bottom in 1977, the top in 1995. Each flavor in
+turn comes with three "colors" (labels): red, green, and blue.
+ 
+A proton or neutron is made up of three quarks, one of each color.
+ 
+We can create particles made up of the other quarks, but these all have
+a much greater mass and decay very rapidly into protons and neutrons.
+ 
+Since the wavelength of light is much larger than the size of an atom,
+we cannot hope to "look" at the parts of an atom in the ordinary way.
+Particles are in fact waves. The higher the energy of a particle, the
+smaller the wavelength of the corresponding wave. So the best answer we
+can give to this question depends on how high a particle energy we have
+at our disposal, because this determines how small a length scale we can
+look.
+
+An electron volt is the energy gained by an electron from an electric
+field of one volt.
+
+As of the book was written, people had learned how to use
+electromagnetic fields to give particles energies of at first millions
+and then thousands of millions of electron volts. 
+
+Using the particle/wave duality, everything in the universe can be
+described in terms of particles. 
+
+Particles have a property called "spin".
+
+All the known particles in the universe can be divided into two groups:
+particles of spin 1⁄2, which make up the matter in the universe, and
+particles of spin 0, 1, and 2, which give rise to forces between the
+matter particles.
+
+All matter particles obey Pauli's "exclusion principle": two similar
+particles cannot exist in the same state, i.e., they cannot have the
+same position and the same velocity within the limits given by the
+uncertainty principle. Force-carrying particles do not obey the
+exclusion principle.
+
+
+Dirac proposed in 1928 a theory that was consistent with both quantum
+mechanics and the STR. It explained mathematically why the electron had
+spin 1/2. It also predicted the existence of an anti-electron, or
+positron, which was discovered in 1932.
+
+Every particle has an antiparticle, with which it can annihilate.
+
+Force-carrying particles exchanged between matter particles are said to
+be "virtual particles" because they cannot be directly detected by a
+particle detector. Their existence is indicated by the measurable effect
+they have. In certain circumstances, force-carrying particles can be
+detected as waves, such as waves of light or gravitational waves.
+
+For convenience of the construction of partial theories, force-carrying
+particles can be grouped into four man-made categories: gravitational
+force, electromagnetic force, weak nuclear force, and strong nuclear
+force. So far, the latter three forces can be successfully explained in
+a unified theory, and gravity is left till later.
+
+The existence of graviton had not been observed.
+
+The strong nuclear force has a property called "confinement": it always
+binds particles together into combinations that have no color. 
+
+At normal energies, the strong nuclear force is strong and binds quarks
+tightly together. Experiments with large particle accelerators indicate
+that at high energies the strong force becomes much weaker, and the
+quarks and the gluons behave almost like free particles. This is another
+property of the strong nuclear force called "asymptotic freedom".
+
+The grand unified theory (GUT) is a theory that combines the
+electromagnetic, weak nuclear and strong nuclear forces. It does not
+include gravity, and contains a number of parameters that cannot be
+predicted from the theory but have to be fit in with experiment. The GUT
+says that at some very high energy, called the "grand unification
+energy", the three forces would all have the same strength and so could
+just be different aspects of a single force. 
+
+The value of the grand unification energy is unknown, but it probably
+would be very large. It is impossible to test GUT directly in the
+laboratory. There are low energy consequences of the theory that can be
+tested.
+
+Up to 1956 it was believed that the laws of physics obeyed each of three
+separate symmetries called C, P, and T. In 1956, Tsung-Dao Lee and Chen
+Ning Yang suggested that the weak force does not obey the symmetry P.
+The weak force also does not obey the symmetry C. Cronin and Fitch
+discovered CP symmetry was not obeyed in the decay of certain particles.
+It is a theorem that any theory that obeys quantum mechanics and
+relativity must always obey the combined symmetry CPT. Therefore, these
+facts implied the laws of physics must not obey the symmetry T.
+
+##############################################
+# Chapter 6: Black Holes
+############################################## 
+
+Proposed by the American scientist John Wheeler in 1969, the term "black
+hole" is of very recent origin. It represents a graphic description of
+an idea that goes back at least two hundred years ago.
+
+One must first understand the life cycle of a star before how a black
+hole might be formed can be understood.
+
+"The more fuel a star starts off with, the sooner it runs out."
+
+A region of space-time, from which it (light and everything else) is not
+possible to escape to reach a distant observer, is called a "black
+hole." Its boundary is called the "event horizon."
+
+Gravitational waves carry energy away from the objects that emit them.
+Therefore a system a massive objects will settle down eventually to a
+stationary state.
+
+The "no hair" theorem ("a black hole has no hair") says: After
+gravitational collapse a black hole must settle down into a state in
+which it could be rotating, but not pulsating; its size and shape would
+depend only on its mass and rate of rotation, and not on the nature of
+the body that had collapsed to form it.
+
+The "no hair" theorem is practically important because it greatly
+restricts the possible types of black holes. It also means that a very
+large amount of information about the body that has collapsed must be
+lost when a black hole is formed, because afterward all we can possibly
+measure about the body is its mass and rate of rotation.
+
+"Quasi-stellar objects" are also called "quasars".
+
+The theory of black holes was developed in great detail as a
+mathematical model before there was any evidence from observation that
+it was correct.
+ 
+In 1963, M. Schmidt at the Palomar Observatory in California (very close
+to San Diego!) measured the red shift of a faint starlike object in the
+direction of the source of radio waves called 3C273 that was too large
+to be caused by a gravitational field.
+ 
+The case of Cygnus X-1 shows indication of a black hole. There are other
+models to explain it that do not include a black hole, but a black hole
+seems to be the only natural explanation of the observation.
+ 
+The Chandrasekhar mass limits implies that low-mass black holes could
+form only if matter was compressed to enormous densities by very large
+external pressure, e.g., in the high temperatures and pressures of the
+very early universe.
+
+############################################## 
+# Chapter 7: Black Holes Ain't So Black
+##############################################
+
+Black hoes glow like a hot body. The smaller they are, the more they
+glow. Smaller black holes might actually turn out to be easier to detect
+than large ones.
+ 
+The second law of thermodynamics is never violated.
+ 
+##############################################
+# Chapter 8: The Origin and Fate of the Universe
+##############################################
+ 
+The GTR predicted that space-time began at the big bang singularity and
+would come to an end either at the "big crunch" singularity (if the
+whole universe recollapsed), or at a singularity inside a black hole. 
+
+Hawking gave a talk in 1981 on cosmology in Vatican about the
+possibility that space-time was finite but had no boundary. 
+
+Temperature is a measure of the average energy of the particles.
+
+At high enough temperatures, particles/antiparticles would be produced
+more than they could annihilate; at lower temperatures, annihilation
+would become faster than production.
+
+At the big bang the universe is thought to have been infinitely hot. One
+second after the big bang, it would have fallen to about ten thousand
+million degrees, which can be reached in H-bomb explosions. The center
+of the sun has ten million degrees. 
+
+There are disk-like rotating galaxies and oval-shaped elliptical
+galaxies having no overall rotation.
+
+Neutron stars are very dense. 
+
+A supernova happens when a star uses up its hydrogen, and the outer
+region gets blown off in a tremendous explosion. A supernova outshine
+all other stars in its galaxy.
+
+Our sun is a second- or third- generation star. Heavier elements from an
+earlier supernova formed bodies that now orbit the sun as planets like
+the earth.
+
+The earth acquired its initial atmosphere from the emission of gases
+from the rocks. The early atmosphere contained no oxygen, but a lot of
+other gases such as hydrogen sulfide. The first primitive forms of life
+consumed various materials including hydrogen sulfide, and released
+oxygen.
+
+The "anthropic principle" says "We see the universe the way it is
+because we exist." There are two versions: the weak and the strong.
+
+We do not yet have a complete and consistent theory that combines
+quantum mechanics and gravity. However, we are fairly certain of some
+features that such a unified theory should have. 
+
+1. It should incorporate Feynman's proposal to formulate quantum theory
+in terms of a sum over histories.Imaginary time in a Euclidean
+space-time can be used as a mathematical tool for calculation.
+
+2. It also should incorporate Einstein's idea that the gravitational
+field is represented by curved space-time; particles try to follow the
+nearest thing to a straight path in a curves space.
+
+The real importance of the singularity theorems was that they showed
+that the gravitational field must become so strong that quantum
+gravitational effects could not be ignored.
+
+The "no boundary" proposal says that the universe could be finite in
+imaginary time but without boundaries or singularities.
+
+One might suggest that the so called imaginary time is really the real
+time, and that what we call real time is just a figment of our
+imagination.
+
+COBE is the Cosmic Background Explorer satellite.
+
+The no boundary proposal is a good scientific theory in the sense of
+Karl Popper: it could have been falsified by observations but instead
+its predictions have been confirmed.
+
+Hawking's religious view is summarized in the concluding sentence of
+this chapter. "But if the universe is really completely self-contained,
+having no boundary or edge, it would have neither beginning nor end: it
+would simply be. What place, then, for a creator?"
+
+##############################################
+# Chapter 9: The Arrow of Time
+##############################################
+
+The laws of science do not distinguish between the forward and backward
+directions of time. However, there are at least three arrows of time
+that do distinguish the past from the future.
+
+1. The thermodynamic arrow, the direction of time in which disorder
+increases.
+
+2. The psychological arrow, the direction of time in which we remember
+the past and not the future.
+
+3. The cosmological arrow, the direction of time in which the universe
+expands rather than contracts.
+
+1 and 2 are essentially the same. We observe the thermodynamic arrow to
+agree with the cosmological arrow is that intelligent beings can exist
+only in the expanding phase.
+
+##############################################
+# Chapter 10: Wormholes and Time Travel
+##############################################
+
+The early universe did not have the kind of curvature required to allow
+time travel.
+
+The concept of a wormhole (a "bridge") was proposed in 1935 by Einstein
+and N. Rosen.
+
+Matter with negative energy density is needed to allow travel into the
+past.
+
+The Casimir effect provided an example of how quantum theory can allow
+negative energy densities.
+
+Radiation by black holes shows that quantum theory allows travel back in
+time on a microscopic scale and that such time travel can produce
+observable effects.
+
+The chronology protection conjecture says that the laws of physics
+conspire to prevent macroscopic bodies from carrying information into
+the past.
+
+"The possibility of time travel remains open."
+
+##############################################
+# Chapter 11: The Unification of Physics
+##############################################
+
+In 1984, there was a remarkable change of opinion of the unification
+theory in favor of what are called "string theories."
+
+In string theories, what were previously thought of as particles are now
+pictured as waves traveling down the string. The emission or absorption
+of one particle by another corresponds to the dividing or joining
+together of strings.
+
+String theories seem to be consistent only if space-time has either ten
+or twenty-six dimensions.
+
+##############################################
+# Chapter 12: Conclusions
+##############################################
+
+If we do discover a complete theory, it should in time be understandable
+in broad principle by everyone, not just a few scientists.
+ 
+If we find the answer to that, it woulb be the ultimate triumph of human
+reason 
+- for then we would know the mind of God.
+ 
+# Completed reading on 2012-01-21
+
+

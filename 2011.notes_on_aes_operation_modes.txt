@@ -1,0 +1,121 @@
+######################################################
+# This is a reading note on block cipher modes
+#
+# Created 2011-01-17 by N. Shang
+# Last updated 2011-01-17 by N. Shang
+######################################################
+
+
+REFERENCES:
+[1] A summarization of NIST approved block cipher modes. July 2010.
+Available at http://csrc.nist.gov/groups/ST/toolkit/BCM/current_modes.html.
+
+[2] Block cipher modes status. February 2010.
+http://csrc.nist.gov/groups/ST/toolkit/BCM/index.html
+
+[3] NIST approved block ciphers. January 2011.
+http://csrc.nist.gov/groups/ST/toolkit/block_ciphers.html
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``A block cipher mode, or mode, for short, is an algorithm that features
+the use of a symmetric key block cipher algorithm to provide an information
+service, such as confidentiality or authentication.'' [2]
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+As of January 2011, there are 9 NIST approved block cipher modes [1, 2],
+including
+- Six (6) confidentiality modes:
+  ECB, CBC, OFB, CFB, CTR, XTS-AES
+
+- One (1) authentication mode:
+  CMAC
+
+- Two (2) combined modes for confidentiality and authentication:
+  CCM, GCM
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Descriptions of usage:
+
+Confidentiality modes:
+  ECB: Electronic Codebook
+
+       Each block is encrypted separately.
+       Both encryption and decryption
+       can be computed in parallel. Not recommended in practice.
+
+
+  CBC: Cipher Block Chaining
+
+       Each ciphertext is dependent on all blocks processed up to this
+       point.
+       Needs an IV.
+       Encryption is sequantial. Decryption can be computed in parallel.
+
+  CFB: Cipher Feedback
+
+       Self-synchronizing stream cipher.
+       No padding needed.
+       Needs an IV.
+       Encryption is sequential.
+       Decryption can be parallelized if the input blocks are first
+       constructed from the IV and the ciphertext.
+
+
+  OFB: Output Feedback
+
+       Synchronous stream cipher. (Flipping one bit in ciphertext produces
+       a flipped bit in the plaintext in the same location.)
+       No padding needed.
+       Needs a unique IV (nonce) for every message that is ever encrypted
+       under the given key.
+       Forward cipher function cannot be parallelized in encryption and
+       decryption.
+
+  CTR: Couter
+
+       A block cipher turned into a stream cipher.
+       No padding needed.
+       Needs an IV/nonce.
+       Both encryption and decryption can be performed in parallel.
+
+Authentication mode:
+
+  CMAC: Cipher-based MAC
+
+        May be more appropriate for information systems in which an approved
+        block cipher is more readily available than an approved hash
+        function.
+
+Authenticated encryption modes:
+
+CCM: Counter with Cipher Block Chaining-Message Authentication Code
+
+     Combines counter mode for confidentiality with cipher block chaining
+     technique for authentication, using the same key.
+     Need an IV/nonce.
+
+GCM: Galois/Counter Mode
+
+     Combines the counter mode for confidentiality with an authentication
+     mechanism that is based on a universal hash function.
+     Designed to faciliate high-throughput hardware implementations;
+     software optimizations are also possible, if certain lookup tables
+     can be precomputed from the key and stored in memory.
+     Needs an IV that must satisfy a uniqueness requirement.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NIST publications on block cipher modes.
+
+* SP - Special Publication
+* FP - FIPS Publication
+
+Five confidentiality modes:
+ SP 800-38A: ECB, CBC, CFB, OFB (updated since FP 81); CTR
+
+An authentication mode:
+ SP 800-38B: CMAC
+
+Authenticated encryption modes:
+ SP 800-38C: CCM
+ SP 800-38D: GCM
+

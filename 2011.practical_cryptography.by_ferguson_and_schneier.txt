@@ -1,0 +1,556 @@
+################################################################
+# Reading Notes: Practical Cryptography by Ferguson and Schneier
+################################################################
+
+This is a cryptography book that concentrates on the engineering
+details of using cryptography to build a secure system.
+
+
+Started reading the book on 2011-09-14.
+Finished reading the book on 2011-10-03.
+
+##################################################
+First Read Chapters 23, 24, 25.
+##################################################
+
+ 23. The Standards Process
+
+ The authors dislike the standardization process. 
+ - The standards committees do not produce good work
+ - Competitions work well (SSL and AES)
+
+ 24. Patents
+
+ The authors blame the current patent system. 
+
+ 25. Involving Experts
+ 
+ Don't shoot yourself in the foot.
+
+##################################################
+Chapter 2: The context of cryptography
+##################################################
+
+ ``Cryptography is only truely useful if the rest of the system 
+ is also secure.''
+
+ ``An attacker who breaks the cryptograpy has a low chance of
+ being detected.'' This is mentioned to be "one reason why 
+ cryptography is important to get right, even in systems that
+ have other weaknesses."
+
+ ``The security system is only as strong as its weakest link.''
+
+ ``Strictly speaking, strengthening anything but the weakest link
+ is useless. In practice, things are not so clear-cut... It is
+ therefore worthwhile to strengthen any link that could in a
+ particular situation be the weakest.''
+
+ ``When attack a system, you only criticize the system and not the
+ people behind it.''
+
+ Read David Kahn's 'The Codebreakers'.
+
+
+##################################################
+Chapter 3: Introduction
+##################################################
+
+Types a attacks on encryption functions enumerated by the authors:
+ - Ciphertext-only
+ - Known Plaintext
+ - Chosen Plaintext
+ - Chosen Ciphertext
+ - Distinguishing attacks: any nontrivial method that detects a 
+ difference between the ideal cipher and the actual cipher
+ - Birthday: related to collisions
+ - Meet in the middle
+
+ ``There are already enough insecure fast systems; we don't need another
+ one.''
+
+ ``There a no secure complex systems.
+ - Complexity is the worst enemy of security.
+ - Correctness must be a local property.''
+
+##################################################
+Chapter 4: Block Ciphers
+##################################################
+
+- On formal definition of a block cipher:
+``Using a more formal definition that ignores certain types of attack
+is the wrong way to go about making secure system.''
+
+[SN] Actually the authors also ignores certain types of attaks in their
+definition. "Certain types of attacks" will most likely be ignored in
+the case of any formal definition. I think the idea is that no important
+attacks should be ignored.
+
+- The Feistel construction is an elegant idea, for which decryption requires
+the same set of operations as encryption.
+
+- DES uses 56-bit keys and 64-bit block size.
+
+- By leaving out the swap after the last round, DES makes encryption 
+and decryption functions identical, except for the order of the round
+keys. It is particularly nice for hardware implementations.
+
+- Some of DES's drawbacks: weak key, complementation property
+
+- ``If you get good proposals, an AES-style competition is far superior
+to a design by committee.''
+
+- AES (Rijndael) is not a Feistel cipher. Decryption is significantly
+different from encryption.
+
+- AES has a simple algebraic structure. It is possible to write AES 
+encryption as a relatively simple closed algebraic formula over the finite
+field with 2^8 elements.
+
+[SN] I found the authors' criticism of AES on its algebraic structure 
+a little exaggerated. Given that their submission to the AES competition
+was not eventually selected, this is no surpise.
+
+- XORs add key material to the data, S-boxes provide nonlinearity, and
+byte shuffle and mixing functions provide diffusion.
+
+- Serpent has an implementation trick called "bitslice implementation."
+
+- The S-boxes of Twofish are key-dependent. Precomputation is needed for
+each key.
+
+- Equation solving attacks were claimed to break AES and Serpent. Their
+names are XL, FXL, and XSL. These attacks are described as "XSL-styled"
+in the book.
+
+##################################################
+Chapter 5: Block Cipher Modes
+##################################################
+
+- Padded messages must be uniquely reversible. 
+
+- Two padding schemes are suggested:
+ 1. Append a single bye with value 128 (0x80) and as many zero bytes as 
+ needed to make the overall length a multiple of the block size.
+
+ 2. Pad the remaining n bytes each with value n.
+
+- ``An erroneous padding should be treated in the same manner as an 
+uthentication failure.''
+
+- ``Any weakness of CTR encryption mode immediately implies a chosen 
+ciphertext attack  on the block cipher.''
+
+[SN] Need to see how this reduction is done.
+
+- All block cipher modes leak information. A good practice is to limit
+the amount of data you process with any one key.
+
+- The authors are in favor a CRT mode.
+
+##################################################
+Chapter 6: Hash Functions
+##################################################
+
+- We no far less about hash functions than we do about block ciphers.
+
+- Almost all real-life hash functions, including MD5, SHA*, are iterative
+hash functions.
+
+- Two weaknesses of iterative hash functions: length extensions and 
+partial-message collision.
+
+- A correction: page 86, paragraph -2, line -3, should add "h'()' after
+"using a compression function".
+
+
+##################################################
+Chapter 7: Message Authentication Code
+##################################################
+
+- CBC-MAC encrypts the message using CBC mode and then throws away all
+but the last block of ciphertext.
+
+- The advantage of CBC-MAC is that is uses the same type of computations as
+the block cipher encryption modes, which makes hardware implementation 
+convenient.
+
+- To use CBC-MAC safely, you need to do the following:
+
+ 1. Construct a string s from the concatenation of l and m, where l is the
+ length of m encoded with a fixed-length format.
+
+ 2. Pad s until the length is a multiple of the block size.
+
+ 3. Apply CBC-MAC to the padded string s.
+
+ 4. Output the last ciphertext block, or part of that block. Do not output
+ any of the intermediate values.
+
+- The CBC-MAC is very difficult to use correctly and thus is not 
+recommended. 
+
+- Although the authors as inventors of SHA_d thinks highly of their 
+ invention, they recommend using HMAC because it is a more conservative
+choice.
+
+- When the short size (64-bit) of UMAC output is discussed, the author say
+they consider it too small, and ``the security of the MAC should not 
+depend on other parts of 'the system'.''
+
+- ``Cryptographic design is already too difficult, and complicating the 
+system with extra cross-dependencies is a recipe for disaster.''
+
+- The authors comment that UMAC is ``more like a race-horse than a working
+horse. It is fast, but only useful in special circumstances.''
+
+- The Horton Principle: Authenticate what is being meant, not what is 
+being said.
+
+- The Horton Principle is also one of the reasons why authentication at 
+lower protocol levels does not provide adequate authentication for 
+higher-level protocols.
+
+##################################################
+Chapter 8: The Secure Channel
+##################################################
+
+- ``When you send data to the future, you cannot have an interactive
+protocol, since the future cannot send a message back to the past.''
+
+- ``From out adversarial point of view, there is no such a thing as a
+reliable communication protocol.'' 
+
+- The definition of ``Secure Channel'' in the book (Alice sends data to 
+Bob):
+ * Eve does not learn anything about the messages m_i except for their
+timing and size.
+ [SN] So taffic analysis is not considered.
+
+ * Eve may manipulate the messages, but Bob receives a subsequence of the
+ Alice sent messages m_i, and knows exactly which subsequence he receives
+ and misses.
+
+- On ``authenticate-first'' or ``sign-first.''
+ * These are two flavors. The real choice is which of the two functions is
+ applied last.
+
+ * Advantages of ``encrypt-first'': 
+  1. Applying a MAC to ciphertext of certain weak encryption makes it 
+  secure. However, encryption schemes with such weaknesses are never used
+  in practical systems.
+  2. It is more efficient in discarding bogus messages. However, the authors
+  argue that in most real-life situations, a DoS attack works by saturating
+  the communication channel rather than by bogging down the CPU.
+
+ * Advantages of ``authenticate-first'':
+ 1. It protects the MAC value. ``In general, authentication is more 
+ important than encryption.''
+ 2. It is implied by the Horton Principle.
+
+ * The authors favor the ``authenticate-first'' approach, because they
+ find ``the security and simplicity advantages more important than saving
+ CPU time during an attack.''
+
+- The described secure channel solution consists of three components:
+message numbering, authentication, and encryption.
+ 
+- Message numbering: 
+
+ * Using a 32-bit number for the message number is often sufficient for 
+ most applications, but of course you can have other choices. 
+ * There is an implementation trick by starting numbering from 1 instead of
+ 0. It makes us not need to worry about what "message 0" means. 
+
+- Authenticaton:
+ * Use HMAC-SHA-256 as the MAC
+ * The MAC value a_i = MAC(i||l(x_i)||x_i||m_i), where l(x_i) is the length
+ of the extra authentication data x_i, both i and l(x_i) are 32-bit integers
+ in little endian, m_i is the i-th message. 
+
+- Encryption:
+ * Use AES in CTR mode, and limit the block counter to 32 bits (16*2^32
+ bytes).
+
+- Frame format: i||Enc(m_i||a_i)
+
+- At the receiver side, if the authentication fails, a failure indication
+is returned, but neither the key stream nor the plaintext may be revealed.
+
+##################################################
+Chapter 9: Implementation Issues (I)
+##################################################
+
+- Correct software has a specified functionality. Secure software has an
+additional requirement: a lack of functionality. No matter what the attacker
+does, she cannot do X.
+
+- The security aspects of the software cannot be tested in any effective
+way. Standard implementation techniques are entirely inadequate to create
+secure code.
+
+- Designing cryptographic systems might be fun, but it is a waste of time
+if you implement them badly.
+
+- Keeping secrets:
+ + Wiping state: wipe any information as soon as you no longer need it
+  * memset() may be dangerous to use to wipe data for some compiliers are
+    too clever in optimization. So check the code your compiler produces.
+  * Java garbage collection can also make things complicated. During 
+    exception handling, Java happily unwinds the statck, throwing away the
+    references to the objects without cleaning up the objects themselves.
+  * Everything, including the secrets, is loaded into a CPU register. Wiping
+    register is not possible in most programming languages, but on 
+    register-starved CPUs like the Pentium, any data cannot survive a long 
+    time.
+  * During a context switch, the register values are stored in memory. 
+    Fixing the OS is the way to solve the problem.
+
+ + Swap files: 
+  * The OS may writes arbitrary memory from a program to a swap file.
+  * On some operating systems there are system calls that can be used to
+    inform the virtual memory systems that specified parts of memory are
+    not to be swapped out.
+  * Rarely do we find an OS that supports a secure swap system where the
+    swapped-out data is cryptographically protected. 
+
+ + Caches:
+  * It is not a great danger.
+
+ + Data retention by memory:
+  * Simply overwriting data in memory does not delete the data. 
+  * If you store data in a memory loction, that locaton slowly starts to 
+  "learn" that data.
+  * The authors give a partially solution called "Boojum".
+
+ + Access by others:
+  * Memory sharing, debugger, superuser. There is little that you can do,
+   but it is good to be aware of the situations.
+  * These types of attacks are difficult to defend, and you should consider
+   these issues on the particular platform you are working on.
+
+ + Data integrity:
+  * MAC protects data integrity during transit, but if data can be modified
+   in memory, we still have problems.
+  * If hardware is not reliable, then there is little that you can do.
+  * Make sure the main memory is ECC. Without ECC memory, any bit error 
+  leads to the CPU reading the wrong data.
+
+ + What to do:
+  * Keeping a secret on a modern computer is not easy. 
+  * Current OSes and programming languages do not privide the required
+  support to completely stop leakage.
+  * You have to do the best you can.
+
+- Quality of code: 
+ + Simplicity: 
+   In security, simplicity is the king. 
+
+   Stay away from committee designs. 
+
+   Make it secure by default. 
+
+   Chose a single cipher suite that is secure enough for all possible 
+  applications.
+
+ + Modularization: 
+   Make sure work can be done in large enough chunks. Then only opitimize
+   those parts of the program that you can measure as having a significant
+   effect on the performance.
+
+ + Assertions:
+   Assertion checking should not be turned off on production code. The
+   argument is that if an assertion fails in production code then you have
+   just encountered a programming error. 
+
+   Leave all you code checking on.
+
+ + Buffer overflows:
+   Perfectly good solutions to buffer overflow have been available for a
+   long time. Algol 60 has mandatory array bounds checking.
+   
+   Buffer overflows cause about half of the security problem on the 
+   Internet.
+
+   The authors suggest to avoid any programming language that allows
+   buffer overflow, such as C or C++.
+
+ + Testing:
+   Two types of tests should be implemented: 
+   1. generic functional test
+   2. test of implementation limits
+
+   It is useful to have some "quick test" code that can run every time the
+   program starts up.
+
+- Side-Channel Attacks: 
+  Preventing side-channel attacks is a rat race.
+  Side channels are especially dangerous to devices that are under full
+control of the adversary, e.g., smart cards.
+
+- Security people are universally hated.
+
+- Implementing cryptographic systems is an art in itself.
+  
+##################################################
+Chapter 10: Generating Randomness
+##################################################
+
+- Entropy is the measure for randomness.
+
+- An interview question I came up with: On randomness.
+  How many bits of entropy is there in a 32-bit word, if we know the value
+has 29 bits that are 0, and 3 bits that are 1.
+  Answer: (32, 3) = 32!/(3! * 29!) = 2^5 * 155, 
+  5 + log(155)/log(2) ~= 12.3 So around 12.3 bits.
+
+- A seed file can be used at reboot time to give entropy before any random
+data is available.
+
+- If the entire system, including the seed file, is backed up, there is
+nothing that we can do to to prevent another user from getting the random
+data from the PRNG. With virtual machine images, this can be a serious
+problem.
+
+##################################################
+Chapter 11: Primes
+##################################################
+
+- Miller-Rabin primality test: n iterations to achieve 2^-(2n) false 
+positive rate.
+
+##################################################
+Chapter 12: Diffie-Hellman
+##################################################
+
+##################################################
+Chapter 13: RSA
+##################################################
+
+##################################################
+Chapter 14: Introduction to Cryptographic Protocols
+##################################################
+
+##################################################
+Chapter 15: Key Negotiation Protocol
+##################################################
+
+- Every time a party sends an authentication, the authentication data 
+consists of all the data exchanged so far: all previous messages, and
+all data fields that preceds the authentication that precede the 
+authentication in authenticator's message.
+
+##################################################
+Chapter 16: Implementation Issues (II)
+##################################################
+
+- Wooping technique can be used to verify the BigNum library.
+
+- Resending a message if you haven't received a reply within five seconds
+seems reasonable. Three retries should be enough. ``We prefer to inform the
+user of a problem after 20 seconds, rather than require the user to sit 
+there and wait for a minute or two.''
+
+##################################################
+Chapter 17: The Clock
+##################################################
+
+##################################################
+Chapter 18: Key Servers
+##################################################
+
+- The cryptographic prototocols needed for a Kerberos-sytle system are
+very complicated.
+
+- If you need a Kerberos-style system, use the latest version of Kerberos.
+
+- The authros also give a conceptually simpler solution in case Kerberos
+is not possible to use. 
+
+- ``For the most common type of cryptographic applications that we have 
+seen, you should count on as much time on the key server system as you did
+on the entire application.''
+
+##################################################
+Chapter 19: The Dream of a PKI
+##################################################
+
+##################################################
+Chapter 20: PKI Reality
+##################################################
+
+- Smaller application-specific PKIs work much better than a single large
+one.
+
+- Key management is the most difficult problem in cryptography. It is 
+especially difficult because it involves people instead of mathematics,
+and people are much harder to understand and predict.
+
+- The classical PKI ties keys to names, and uses an ACL to tie names to
+permissions. Points of attacks to this are:
+ 1. Name-key certificate provided by the PKI
+ 2. ACL database that ties names to permissions
+ 3. Name confusion.
+
+- Two workable solutions to certificate revocation problem: revocation list
+and fast expiration.
+ - CRL sysems are expensive to implement and maintain. 
+ - The authors prefer the fast expiration appoach to revocation. Everybody
+   still needs to be online all the time to get the certificates reissued.
+
+- ``Operating a PKI without a working revocation system is somewhat like
+operating a ship without a bilge pump.''
+
+- There is no revocation system that works offline. 
+
+- Compared with a key server system, PKI has some advantages.
+ - A key server requires everybody to be online in real time. A PKI gives
+you some flexibilities.
+
+ - A key server is a snigle point of failure. Large PKI systems almost
+always have a hierarchical CA, which means that the cA is already 
+distributed and failures affect only a small part of the system.
+
+ - A key server can never provide nonrepudiation. In theory, a PKI should
+ provide you nonrepudiation. In real life, nonrepudiation doesn't work 
+ because people cannot store secret keys sufficiently well.
+
+ - The key server system has the master key material in an online computer.
+ In PKI, the CA root key does not have to be stored in a computer that is
+ online. Computers that are offline are much harder to attack than those 
+ that are online.
+
+- ``A PKI is much more complex than a key server system, and the public-key
+computation requires a lot more computational time.''
+
+- For small systems, it is easier to use the key server approach. For 
+large systems, a PKI is more advantegeous.
+
+##################################################
+Chapter 21: PKI Practicalities
+##################################################
+
+- This section discusses some practical considerations that occur when
+designing a PKI system.
+
+- Stay away from X.509 certificates. Doing it yourself it probably easier.
+
+- You need to encode a restriction into the sub-CA's certificate that
+restructs certificates that a sub-CA can issue.
+
+- ``Key management is not so much a cryptographic problem as it is a problem
+of interfacing with the real world.''
+
+##################################################
+Chapter 22: Storing Secrets
+##################################################
+
+- Biometrics are very insecure. They can be easily forged.
+
+- ``In real life, secret sharing schemes are rarely used because they are
+too complex.'' 
+
+[SN] I think secret sharing is rarely used because they are not in need 
+most of the time.
+
+

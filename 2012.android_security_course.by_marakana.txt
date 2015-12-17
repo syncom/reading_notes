@@ -1,0 +1,210 @@
+# Android Security Course by Marakana
+# Course ware is available at http://mrkn.co/ansecw
+# Compressed course ware is available at http://mrkn.co/ansecwz
+
+Android runs on a fork of Linux.
+
+* Kernel Layer *
+
+Binder IPC. 
+- /dev/binder. 
+- Main means of IPC on Android.
+- Passes caller's info to the callee.
+- POSIX IPCs are still available in native code, but binder is recommended.
+
+Ashmem.
+- "Properties" are shared using Ashmem.
+
+Pmem.
+- Physical memory allocator.
+
+Wakelocks.
+- Used by applications and services to request CPU resources.
+
+Alarm.
+
+Low memory killer.
+- Automatic SIGKILLs (kill -9). This is why POSIX IPCs are no good. There
+  is no way to recover from SIGKILL with traditional POSIX features.
+- Somewhat unpredicted.
+- Built-in system daemons has oom_adj value -16, so are not affected by
+  lmk.
+- Applications can set android:persistent="true" to get oom_adj value -12
+  to be unaffected by lmk. Only system apps' (at /system/app) request will 
+  be honored.
+- Android has no swap memory/filesystem, for swap
+ + needs to be encrypted
+ + drains battery
+ + impacts lifetime of flash memory
+- Android has no paging mechanism. procrank shows Vss==Rss
+- oom_adj
+
+Can boot into "Safe mode" to delete malicious apps.
+
+Logger.
+- /dev/log/{main|system|radio}, world writable. (privacy concern)
+- System-wide log
+- What 'adb logcat' gets (look for securityexception)
+
+Paranoid Network Security.
+- Restricts access to some networking features depending on the group
+  of the calling process.
+
+* Android User-Space Native Layer *
+
+User-space HAL.
+- No access control is done in hw drivers.
+
+Native Daemons.
+- A /system/bin/void bug enabled rooting of GingerBread
+
+Flingers.
+- Surface Flinger wraps frame buffer.
+
+Dalvik VM.
+- A custom clean-room implementation of a VM, semantically similar to JVM
+  but not a JVM.
+- Runs Dalvik byte-code, stored in .dex files
+- Each app runs in a separate instance of Dalvik
+- A register-based interpreter
+ 
+
+* Day 1, Afternoon *
+Class will meets tomorrow in S-220.
+
+* Android Application Framework Layer * 
+
+* Android Application Layer *
+
+- Built-in apps are stored in read-only /system/ partition under 
+  /system/app
+
+* Android Startup *
+
+- Recovery mode is mainly intended for OTA
+
+init.rc
+- A walkthrough of init.rc. How the system is initialized.
+- All children of init runs with oom_adj value -16. Only zygote changes them
+  later.
+- ueventd sets device and file filesystem permissions. Driver providers
+  need to set the permissions properly in their corresponding ueventd files.
+
+android_filesystem_config.h
+- This header file defines the uid and gid and permissions of executables.
+- Done prior to mounting of the file system.
+- Used `run-as` as an example.
+
+* Android Security *
+- Dalvik VM is not a security boundary. Linux kernel is the sole mechanism
+  of application sandboxing.
+- Some permissions are available only to system apps (/system/app ro 
+  partition)
+- installd verifies the signature of the app and sets uid of the app 
+- Android allows multiple signatures for the same app
+
+- am start -a android.intent.action.CALL -d tel:0000000000
+  Simulating calling a number.
+
+- There is a BRICK permission that bricks the phone
+
+- How are permissions enforced?
+ + Filesystem permission enforcement.
+   After deployment/installation of the app,
+/system/etc/permissions/platform.xml is modified 
+
+ + UID-based permission enforcement, in a hard coded way
+
+ + static permission enforcement
+   ActivityManagerService does the enforcement
+   For services to specify access permissions required 
+
+- UID for a regular app is not statically assigned, but can be used for
+  the system to figure out meta-data such as permissions.
+- Can declare custom permissions
+
+* Day 2 Morning *
+
+- The courseware was updated, re-download from http://mrkn.co/ansecwz.
+
+- Once a custom permission is declared in an application and the application
+  is enforced, the permission becomes available to everybody in the system.
+
+- Usually, a permission is only enforced once in the entire system, 
+  although it is possible for two applications to enforce the same 
+  permission. 
+
+ContentProvider URI permissions.
+- A finer-grained means of granting permissions by a content provider.
+
+Public vs. private components.
+- Unless absolutely designed for external use, explicitly set the 
+  android:exported="false", because components may be unknowingly be 
+  leaked to other applications (assuming no permissions are used) 
+
+Namespace collision is a problem with Android. Can potentially spoof an
+application if the same permission is declared and enforced.
+
+Pending intent.
+- Pending intent can potentially be dangerous; unfilled values in the actual
+ intent can be added (but not modified) by others. Impersonation problem
+ may occur. 
+- The application given the pending intent can fill-in unspecified values 
+  of the actual intent (subject to the rules of Intent.fillIn()), which 
+  may influence destination and/or integrity of the actual intent’s data 
+
+OpenSSL is not deemed as a "future-proof" statck for Android.
+
+On ICS, certificates are stored at /system/etc/security/cacerts.
+
+Use whole disk encryption to protect data on Honeycomb. Security based on
+user password.
+
+TRESOR (Usenix 2011 talk) can be used to prevent password to be stored in
+memory for Intel CPUs. No similar thing for ARM/Android.
+
+StorageManager.
+- Interface to the system storage service.
+- Handles storage-related items such as Opaque Binary Blobs (OBBs)
+
+KeyStore and KeyChain. 
+- Ways of managing user credentials. 
+- It is up to the user's precaution to grant permissions to the requesting 
+  applications.
+
+Rooting.
+- Controlling access to /system/bin/su with Superuer.
+- Again, give control to the user!
+
+Rooting practices.
+- Exhaust processes to prevent adbd permission drop.
+- Ashmen memory protection attack.
+- Buffer overrun (due to integer overflow) in vold daemon. No user 
+  involvement other than installation of the app needed.
+- Linux Local Privilege Escalation via SUID /proc/pid/mem Write 
+  (CVE-2012-0056). TODO: I do not understand this one.
+
+Security of memory.
+- A number of tools and counter-measures are available.
+
+SELinux for Android.
+
+Android device administration.
+- API that allows creation of security-aware applications.
+- There is no way to physically wipe flash memory data accurately from 
+  software (above file system level)
+
+Anti-malware.
+- Can use package manager to inspect installed applications.
+- android.content.pm.PackageManager.getInstalledPackages(int flags) for 
+  the full app scan 
+- Listen for android.intent.action.PACKAGE_ADDED broadcasts and verify 
+  new/updated apps
+
+
+Native libraries can be shared among applications. However, using services 
+instead of shared libraries is a better way for resource sharing.
+
+Q: What is /data/data folder?
+
+

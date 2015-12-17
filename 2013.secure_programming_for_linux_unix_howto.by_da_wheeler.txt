@@ -1,0 +1,263 @@
+The latest version of the HOWTO is at http://www.dwheeler.com/secure-programs/.
+
+# Chapter 2: Background
+
+When writing secure programs, paranoia is a virtue.
+
+Security websites:
+http://www.securityfocus.com/: A collection of security-related news and
+information, as well as mailing lists http://www.linuxsecurity.com/:
+Linux-specific security information
+
+# Chapter 3: Summary of Linux and Unix Security Features
+
+Filesystem object attributes may have different meanings on directories
+and regular files. Pay attention to ‘sticky bit’ and ‘setuid / setgid’.
+
+New files always start with a clear sticky bit and clear setuid bit.
+
+Over the years the conventions have always been built on ``what files to
+place where’’. The Filesystem Hierarchy Standard (FHS) tries to define
+these conventions in a logical manner, and is widely used by Linux
+Systems. Try `man hier` - Description of the file system hierarchy.
+
+There are three kinds of System V IPC objects:
+1. System V message queues
+2. Semaphore sets
+3. shared memory segments
+
+Recommendations on programming signals to eliminate signal race problems:
+- When possible, have signal handlers unconditionally set specific flags
+  and do nothing else.
+- If more complex signal handlers are a must, use only calls
+  specifically designated as being safe for use in signal handlers.
+- Block signal delivery during all non-atomic operations in the program,
+  and block signal delivery insider signal handlers.
+
+Except during debugging, you should NOT use values computed from the
+current directory as a source for dynamically linked libraries. An
+attacker may be able to add their own choice ``library’’ values.
+
+In the GNU glibc implementation, if the program is setuid or setgid, the
+environment variables LD_LIBRARY_PATH, LD_PRELOAD, LD_DEBUG, etc., are
+ignored or greatly limited in what they can do.
+
+Graphic user interface toolkits generally do permit user control over
+dynamically linked libraries. 
+Executables that directly invoke graphical user interface should never,
+ever, be setuid.
+
+For Linux system, more information about dynamically linked libraries
+can be found in the author’s other document: Programming Library HOWTO.
+
+According to FHS, audit logs should be stored in /var/log or its
+subdirectories.
+
+Sun Solaris and nearly all Linux systems use the Pluggable
+Authentication Modules (PAM) system for authentication. Section 11.6 has
+more information on using PAM.
+
+Because there are so many different approaches to implementing more
+sophisticated security models, Linus Torvalds has requested that a
+generic approach be developed so different security policies can be
+inserted.
+
+# Chapter 4: Security Requirements
+
+This chapter touches upon Common Criteria (CC).
+
+``TOE’’ stands for ``target of evaluation’’.
+
+If you plan to go through a formal evaluation, you need to read the real
+CC, examine various websites to really understand the basics of the CC,
+and eventually contact a lab accredited to do a CC evaluation.
+
+The CC is typically used to create two kinds of documents: a
+``Protection Profile’’ (PP) and a ``Security Target’’ (ST). 
+- A PP is a document created by a group of users that identifies the
+  desired security properties of a product. 
+- An ST is a document that identifies what product actually does, or a
+  subset of it, that is security-relevant.
+
+The ``CC Toolbox'' is an open source software program that helps write
+an ST or PP.
+
+Evaluations are not proofs; they simply impose a defined minimum bar to
+gain confidence in the requirements or product.
+
+In the CC, requirements are grouped into classes, which are subdivided
+into families, which are further subdivided into components.
+
+The CC's ``Security (F)unctional Requirements'' classes:
+Security Audit (FAU)
+Communication/Non-repudiation (FCO)
+Cryptographic Support (FCS)
+User Data Protection (FDP)
+Identification and Authentication (FIA)
+Security Management (FMT)
+Privacy (FPR)
+Protection of the TOE Security Functions/Self-protection (FPT): e.g.,
+self test, fail safe.
+Resource Utilization (FRU): e.g., fault tolerance, task priorities,
+quota
+TOE Access (FTA): issues controlling sessions
+Trusted path/channels (FTP)
+
+
+Some of the CC’s ``Security Assurance Measure Requirements” classes:
+Configuration Management (ACM): version control
+Delivery and operation (ADO): deployment and installation of the TOE
+Development (ADV): implementation
+Guidance Document (AGD): security application notes
+Life-cycle Support (ALC): development security, flaw remediation
+process, wisely selecting development tools
+Test (ATE)
+Vulnerability Assessment (AVA)
+Maintenance of Assurance (AMA)
+
+# Chapter 5: Validate All Input
+
+You should determine what is legal and reject anything that does not
+match that definition. Do not do the reverse, i.e., identify what is
+illegal and write code to reject those cases. In another word, we should
+always try to design the security control based on a whitelist but not a
+blacklist.
+
+The following common data types should be validated before using them
+from an untrusted user:
+- Strings
+- Minimum and maximum allowed values
+- Email addresses
+- Filenames
+- URIs: The most common way of escaping the document root are via ``..’’
+  or a symbolic link. Most servers check them. URIs are not supposed to
+  include UTF-8 encoding, so the safest thing is to reject any URIs that
+  include characters with high bits set.
+- Cookies: Make sure to check the domain value for any cookie being used
+  is the expected one.
+
+While parsing user input, it is a good idea to temporarily drop all
+privileges, or even create separate processes to parse the data.
+
+Not all inputs are under the control of an untrusted user, so you need
+only worry about those inputs that are.
+
+setuid/setgid programs must completely validate the command line inputs
+and must not trust the name of the program reported by command line
+argument zero.
+
+By default, environment variables are inherited from a process’ parent.
+This is dangerous to setuid/setgid programs.
+
+Environment variable storage format is dangerous. In short, environment
+variables are internally stored as a pointer to an array of pointers to
+characters (usually of the form ``NAME=value’’); this array is stored in
+order and terminated by a NULL pointer.
+
+For setuid/setgid programs, the short list of environment variables
+needed as input should be carefully extracted. Then the entire
+environment should be erased, followed by resetting a small set of
+necessary environment variables to safe values.
+
+Ways to erase the environment variables:
+- In C/C++, set the global variable environ to NULL
+- Use the undocumented clearevn() function
+- In shell script, use ``/user/bin/env’’ program with the ``-’’ option.
+
+Common environment variables needed to be re-added are PATH, IFS, and
+TZ.
+
+PATH should NOT include the current directory.
+
+Filenames that can especially cause problems include:
+- Filenames with leading dashes (-)
+- Filenames with control characters
+- Filenames with spaces
+- Invalid character encoding
+- Other characters special to internal data format, such as ``<’’,
+  ``;’’, quote characters, backslashes, etc.
+
+If a program takes directions from a file, it must NOT trust that file
+specially unless only a trusted user can control its contents.
+
+U.S. agencies are currently forbidden to use persistent cookies except
+in special circumstances, because of the concern about invading user
+privacy.
+
+Client-side input checking can be helpful to the user, but is useless
+for security. Servers must perform all their own input checking. [NS:
+This comment specifically refers to web clients and browsers. The case
+of mobile devices is different.]
+
+Other inputs programs must consider include:
+the current directory, signals, memory maps, System V IPC, pending
+timers, resource limit, the scheduling priority, and umask.
+
+Fundamentally, to prevent cross-site malicious content, all web
+application input must be filtered, encoded, or validated.
+
+IETF RFC 2396 and its related specifications have more detailed
+information on valid URIs.
+
+Web applications should explicitly specify the character set (usually
+IsO-8859-1), and not permit other characters, if data from untrusted
+users is used.
+
+# Chapter 6: Avoid Buffer Overflow
+
+C users must avoid using dangerous functions that do not check bounds
+unless they’ve ensured that the bounds will never get exceeded.
+
+A good example for interview.
+
+int main(int argc, char ** argv)
+{
+char buf[40];
+int fd, len;
+char * error;
+
+fd = argv[1];
+error = argv[2];
+
+read(fd, &len, sizeof(len));
+if (len > 40) {
+    error(“too large length”);
+    return;
+}
+
+buf = malloc(len);
+read(fd, buf, len);
+
+return 0;
+}
+
+Library solutions in C/C++ to buffer overflows: remove “unsafe”
+functions.
+
+For sprintf(), if the size is given as a precision of “*”, then you can
+pass the maximum size as a parameter. Example:
+
+char buf[BUFFER_SIZE];
+sprintf(buf, “%*s”, sizeof(buf)-1, “long_string”); /* WRONG */
+sprintf(buf, “%.*s”, sizeof(buf)-1, “long_string”); /* RIGHT */
+
+However, be aware that the situation in the scanf() family is a little
+murky. It's the best to include a test in your installation scripts to
+ensure that the library properly limits length if you use scanf().
+
+Making the stack segment not executable is less protective than it
+seems; attackers can simply force the system to call other interesting
+locations already in the program.
+
+# Chapter 7: Structure Program Internals and Approach
+Good software engineering principles for secure programs:
+Least privilege
+Economy of mechanisms/simplicity
+Open design
+Complete mediation
+Fail-safe defaults
+Separation of privilege
+Least common mechanism
+Psychological acceptability/ease of use
+
+
