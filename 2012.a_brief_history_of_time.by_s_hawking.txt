@@ -107,7 +107,7 @@ spectrum, we can determine exactly which elements are present in the
 star's atmosphere.
  
 The Doppler effect says that when a source of light is moving towards us
-then the wavelenght of the waves we receive is shorter than when the
+then the wavelength of the waves we receive is shorter than when the
 source was stationary; and vice versa.
  
 The fact that most galaxies are red-shifted implies that the universe is
@@ -520,7 +520,7 @@ or twenty-six dimensions.
 If we do discover a complete theory, it should in time be understandable
 in broad principle by everyone, not just a few scientists.
  
-If we find the answer to that, it woulb be the ultimate triumph of human
+If we find the answer to that, it would be the ultimate triumph of human
 reason 
 - for then we would know the mind of God.
  
