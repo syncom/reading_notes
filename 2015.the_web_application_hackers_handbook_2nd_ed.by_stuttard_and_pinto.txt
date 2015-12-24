@@ -1,0 +1,55 @@
+#######################################################
+# The Web Application Hacker's Handbook, 2nd Edition
+# Reading notes
+#######################################################
+
+** Started reading on 20151217.
+
+# Chapter 1: Web Application (In)security
+
+The most serious attacks against web applications are those that expose
+sensitive data or gain unrestricted access to the back-end systems on
+which the application is running.
+
+The core security problem: Users can submit arbitrary input.
+
+** Finished reading Chapter 1 on 20151217.
+
+# Chapter 2: Core Defense Mechanisms
+
+The fundamental security problems with web applications is that all user
+input is untrusted.
+
+Core defense elements:
+- Handle user access: authentication, session management, access control
+
+- Handle user input: 
+  + Blacklist bad input
+  + Whitelist good input
+  + Sanatization
+  + Safe data handling
+  + Semantic checks
+
+- Handle attackers:
+  + Handling errors
+  + Maintaining audit logs
+  + Alerting administrators
+  + Reacting to attacks
+
+** Finished reading Chapter 2 on 20151222.
+
+# Chapter 3: Web Application Technologies
+
+This is a primer on the key technologies that are likely to be
+encountered when attacking web applications:
+    HTTP, encoding schemes
+
+HTTP methods: GET, POST, HEAD, TRACE, OPTIONS, PUT...
+
+HTTP status code:
+- 1xx: informational
+- 2xx: the request was successful
+- 3xx: the client is redirected to a different resource
+- 4xx: the request contains an error of some kind
+- 5xx: tge server encountered an error fulfilling the request
+
