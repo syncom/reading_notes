@@ -146,13 +146,13 @@ ciphertext attack  on the block cipher.''
 - All block cipher modes leak information. A good practice is to limit
 the amount of data you process with any one key.
 
-- The authors are in favor a CRT mode.
+- The authors are in favor of CRT mode.
 
 ##################################################
 Chapter 6: Hash Functions
 ##################################################
 
-- We no far less about hash functions than we do about block ciphers.
+- We know far less about hash functions than we do about block ciphers.
 
 - Almost all real-life hash functions, including MD5, SHA*, are iterative
 hash functions.
@@ -508,7 +508,7 @@ operating a ship without a bilge pump.''
 you some flexibilities.
 
  - A key server is a snigle point of failure. Large PKI systems almost
-always have a hierarchical CA, which means that the cA is already 
+always have a hierarchical CA, which means that the CA is already 
 distributed and failures affect only a small part of the system.
 
  - A key server can never provide nonrepudiation. In theory, a PKI should
