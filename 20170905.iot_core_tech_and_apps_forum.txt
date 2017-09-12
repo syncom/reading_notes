@@ -1,0 +1,131 @@
+# “名家芯思维”之2017年物联网核心技术和应用国际研讨会
+
+会议地点：深圳威尼斯睿途酒店1楼威尼斯厅
+
+September 5, 2017
+
+------------------------------
+Morning Session
+------------------------------
+9:30am Tom Lee at Stanford University
+
+* Silicon is the New Steel (the good and the bad)
+
+The good: Silicon technologies develop fast
+
+The bad:
+Moore's law is over! (We're in the last stages of Moore's Law)
+
+Facts:
+- There are now >7.1 billion mobile subscriptions (>100% of the human
+  population)
+- A race to the bottom: "Jugate" phone, 55 RMB quad-band GSM feature phone
+  with camera and qq
+
+The thesis of the talk: as the evolutionary rate of silicon technology slows,
+the rules of the game are shifting fundamentally; those who can innovate at
+high velocity will have a powerful advantage.
+
+10:20am 吕浩 at NXP
+
+* NXP Leads Next-Gen Domain Based Architectures
+
+90%的汽车创新来自电子设备
+- 无缝互联，出行体验
+- 由ADAS迈向自动驾驶
+- 节能减排
+
+11:00am Yaohong Liu at IMEC
+
+* The RF design challenges in 5G for machine type communications (MTC)
+
+How things connect to the internet:
+LPWA: low power wide area
+- cellular
+- LoRa
+
+SRR: short range radios
+- BLE
+- Zigbee
+- WiFi
+
+This is a talk about the choices of RF design in 5G, with a lot of focus on
+the digital communications side.
+
+11:30am 朱西产 at Tongji Univ
+
+* 智能网联汽车及其应用场景的分析
+
+- 2016年我国汽车产量达到2811.9万辆
+- 汽车依赖石油进口
+
+车联网安全问题。这里的安全主要讲的是safety。
+
+12:18pm 周立功 at 广州致远电子有限公司
+
+* PaaS (Platform as a Service)
+
+利润模型：利润-需求-设计
+
+公司成功靠需求，降低成本
+
+节省成本的额方法之一：代码复用，跨平台
+
+AWorks平台设计思路：抽象共性
+- 基础类库
+- 第三方组建库
+- MVVM GUI框架
+- etc
+
+AMetal框架：底层服务
+
+AWPI应用编程框架
+
+周立功专栏 http://www.zlg.cn/
+
+------------------------------
+Afternoon Session
+------------------------------
+2:00pm Yunan Gong at NXP
+* Functional Safety of Automotive Semiconductor
+
+The speaker talks about how to implement safety development at NXP. To me,
+safety analysis is pretty much similar to security analysis; safety manual is
+just like a security product manual. However, the talk focuses heavily on
+safety certification as it goes.
+
+ISO26262 
+
+The talk went boringly overtime.
+
+3:00pm Johnny Chen at NXP
+* Automotive Security Gateway
+
+Unlike the previous talk, this is a talk on security.
+
+An automotive gateway is similar to a home gateway.
+
+CAN was not designed considering security. 
+
+Four stages of vehicles:
+
+Legacy -> Trending -> Future. This talk is about the later stage of trending
+vehicles.
+
+2012车载网络体系架构
+Network Security
+- High-perf contextual firewall
+- IDS/IPS
+- Seecure Messages
+- Network key management
+
+Car Hacking: security is a must-have
+- Car-generated data may become a $750B market by 2030
+- Up to 150 ECUs per car, up to 200M lines of sw code
+- 250M connected vehicles on the road in 2020
+
+The speaker showed a slide of risk analysis of car security.
+
+
+
+
