@@ -130,13 +130,13 @@ Chapter 5: Block Cipher Modes
 - Padded messages must be uniquely reversible. 
 
 - Two padding schemes are suggested:
- 1. Append a single bye with value 128 (0x80) and as many zero bytes as 
+ 1. Append a single byte with value 128 (0x80) and as many zero bytes as 
  needed to make the overall length a multiple of the block size.
 
  2. Pad the remaining n bytes each with value n.
 
 - ``An erroneous padding should be treated in the same manner as an 
-uthentication failure.''
+authentication failure.''
 
 - ``Any weakness of CTR encryption mode immediately implies a chosen 
 ciphertext attack  on the block cipher.''
