@@ -66,10 +66,9 @@ Types a attacks on encryption functions enumerated by the authors:
  - Birthday: related to collisions
  - Meet in the middle
 
- ``There are already enough insecure fast systems; we don't need another
- one.''
+ ``There are already enough insecure fast systems; we don't need another one.''
 
- ``There a no secure complex systems.
+ ``There are no secure complex systems.
  - Complexity is the worst enemy of security.
  - Correctness must be a local property.''
 
@@ -81,7 +80,7 @@ Chapter 4: Block Ciphers
 ``Using a more formal definition that ignores certain types of attack
 is the wrong way to go about making secure system.''
 
-[SN] Actually the authors also ignores certain types of attaks in their
+[SN] Actually the authors also ignore certain types of attacks in their
 definition. "Certain types of attacks" will most likely be ignored in
 the case of any formal definition. I think the idea is that no important
 attacks should be ignored.
@@ -95,7 +94,7 @@ the same set of operations as encryption.
 and decryption functions identical, except for the order of the round
 keys. It is particularly nice for hardware implementations.
 
-- Some of DES's drawbacks: weak key, complementation property
+- Some of DES's drawbacks: weak keys, complementation property
 
 - ``If you get good proposals, an AES-style competition is far superior
 to a design by committee.''
@@ -146,7 +145,7 @@ ciphertext attack  on the block cipher.''
 - All block cipher modes leak information. A good practice is to limit
 the amount of data you process with any one key.
 
-- The authors are in favor of CRT mode.
+- The authors are in favor of CTR mode.
 
 ##################################################
 Chapter 6: Hash Functions
@@ -294,10 +293,10 @@ if you implement them badly.
 
 - Keeping secrets:
  + Wiping state: wipe any information as soon as you no longer need it
-  * memset() may be dangerous to use to wipe data for some compiliers are
+  * memset() may be dangerous to use to wipe data for some compilers are
     too clever in optimization. So check the code your compiler produces.
   * Java garbage collection can also make things complicated. During 
-    exception handling, Java happily unwinds the statck, throwing away the
+    exception handling, Java happily unwinds the stack, throwing away the
     references to the objects without cleaning up the objects themselves.
   * Everything, including the secrets, is loaded into a CPU register. Wiping
     register is not possible in most programming languages, but on 
@@ -319,7 +318,7 @@ if you implement them badly.
 
  + Data retention by memory:
   * Simply overwriting data in memory does not delete the data. 
-  * If you store data in a memory loction, that locaton slowly starts to 
+  * If you store data in a memory location, that location slowly starts to 
   "learn" that data.
   * The authors give a partially solution called "Boojum".
 
@@ -338,7 +337,7 @@ if you implement them badly.
 
  + What to do:
   * Keeping a secret on a modern computer is not easy. 
-  * Current OSes and programming languages do not privide the required
+  * Current OSes and programming languages do not provide the required
   support to completely stop leakage.
   * You have to do the best you can.
 
@@ -354,7 +353,7 @@ if you implement them badly.
   applications.
 
  + Modularization: 
-   Make sure work can be done in large enough chunks. Then only opitimize
+  Make sure work can be done in large enough chunks. Then only optimize
    those parts of the program that you can measure as having a significant
    effect on the performance.
 
@@ -363,7 +362,7 @@ if you implement them badly.
    argument is that if an assertion fails in production code then you have
    just encountered a programming error. 
 
-   Leave all you code checking on.
+  Leave all your code checking on.
 
  + Buffer overflows:
    Perfectly good solutions to buffer overflow have been available for a
@@ -372,7 +371,7 @@ if you implement them badly.
    Buffer overflows cause about half of the security problem on the 
    Internet.
 
-   The authors suggest to avoid any programming language that allows
+  The authors suggest avoiding any programming language that allows
    buffer overflow, such as C or C++.
 
  + Testing:
@@ -399,7 +398,7 @@ Chapter 10: Generating Randomness
 - Entropy is the measure for randomness.
 
 - An interview question I came up with: On randomness.
-  How many bits of entropy is there in a 32-bit word, if we know the value
+  How many bits of entropy are there in a 32-bit word, if we know the value
 has 29 bits that are 0, and 3 bits that are 1.
   Answer: (32, 3) = 32!/(3! * 29!) = 2^5 * 155, 
   5 + log(155)/log(2) ~= 12.3 So around 12.3 bits.
@@ -459,12 +458,12 @@ Chapter 17: The Clock
 Chapter 18: Key Servers
 ##################################################
 
-- The cryptographic prototocols needed for a Kerberos-sytle system are
+- The cryptographic protocols needed for a Kerberos-style system are
 very complicated.
 
 - If you need a Kerberos-style system, use the latest version of Kerberos.
 
-- The authros also give a conceptually simpler solution in case Kerberos
+- The authors also give a conceptually simpler solution in case Kerberos
 is not possible to use. 
 
 - ``For the most common type of cryptographic applications that we have 
@@ -507,7 +506,7 @@ operating a ship without a bilge pump.''
  - A key server requires everybody to be online in real time. A PKI gives
 you some flexibilities.
 
- - A key server is a snigle point of failure. Large PKI systems almost
+ - A key server is a single point of failure. Large PKI systems almost
 always have a hierarchical CA, which means that the CA is already 
 distributed and failures affect only a small part of the system.
 
@@ -524,7 +523,7 @@ distributed and failures affect only a small part of the system.
 computation requires a lot more computational time.''
 
 - For small systems, it is easier to use the key server approach. For 
-large systems, a PKI is more advantegeous.
+large systems, a PKI is more advantageous.
 
 ##################################################
 Chapter 21: PKI Practicalities
@@ -536,7 +535,7 @@ designing a PKI system.
 - Stay away from X.509 certificates. Doing it yourself it probably easier.
 
 - You need to encode a restriction into the sub-CA's certificate that
-restructs certificates that a sub-CA can issue.
+restricts certificates that a sub-CA can issue.
 
 - ``Key management is not so much a cryptographic problem as it is a problem
 of interfacing with the real world.''
